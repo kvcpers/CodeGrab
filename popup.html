@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CodeGrab</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+
+<div class="shell">
+
+  <!-- Header -->
+  <header>
+    <div class="logo-mark">
+      <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="1" y="2" width="18" height="13" rx="2" stroke="currentColor" stroke-width="1.4"/>
+        <path d="M7 18h6M10 15v3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+        <path d="M5.5 7.5h3M11.5 7.5H14.5M5.5 10.5H7.5M9.5 10.5H11M13 10.5H14.5"
+              stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="logo-text">
+      <span class="logo-name">CodeGrab</span>
+      <span class="logo-sub">Gmail code autofill</span>
+    </div>
+  </header>
+
+  <!-- Loading state -->
+  <section id="s-loading" class="pane">
+    <div class="spinner"></div>
+  </section>
+
+  <!-- Unauthenticated state -->
+  <section id="s-auth" class="pane hidden">
+    <p class="intro">Sign in with Google to start auto-detecting 2FA and OTP codes from Gmail.</p>
+    <ul class="features">
+      <li>Watches Gmail for new security codes</li>
+      <li>Shows a floating overlay near your input</li>
+      <li>One-click autofill + clipboard copy</li>
+    </ul>
+    <button id="btn-signin" class="btn btn-primary">
+      <svg class="google-g" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg" width="16" height="16">
+        <path d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844a4.14 4.14 0 01-1.796 2.716v2.259h2.908c1.702-1.567 2.684-3.875 2.684-6.615z" fill="#4285F4"/>
+        <path d="M9 18c2.43 0 4.467-.806 5.956-2.18l-2.908-2.259c-.806.54-1.837.86-3.048.86-2.344 0-4.328-1.584-5.036-3.711H.957v2.332A8.997 8.997 0 009 18z" fill="#34A853"/>
+        <path d="M3.964 10.71A5.41 5.41 0 013.682 9c0-.593.102-1.17.282-1.71V4.958H.957A8.996 8.996 0 000 9c0 1.452.348 2.827.957 4.042l3.007-2.332z" fill="#FBBC05"/>
+        <path d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0A8.997 8.997 0 00.957 4.958L3.964 7.29C4.672 5.163 6.656 3.58 9 3.58z" fill="#EA4335"/>
+      </svg>
+      Sign in with Google
+    </button>
+  </section>
+
+  <!-- Authenticated / main state -->
+  <section id="s-main" class="pane hidden">
+
+    <!-- Status pill -->
+    <div class="status-row" id="status-row">
+      <span class="status-dot" id="status-dot"></span>
+      <div class="status-text">
+        <span id="lbl-status">Monitoring Gmail</span>
+        <span id="lbl-sub">Checking every 30 s</span>
+      </div>
+      <label class="switch">
+        <input type="checkbox" id="toggle-poll" checked>
+        <span class="track"></span>
+      </label>
+    </div>
+
+    <!-- Last detected code card (hidden until a code is found) -->
+    <div id="card-code" class="code-card hidden">
+      <div class="code-card-head">
+        <span class="chip">Last code</span>
+        <span id="lbl-time" class="code-age"></span>
+      </div>
+      <div class="code-display">
+        <span id="lbl-code" class="code-val"></span>
+        <span id="lbl-from" class="code-from"></span>
+      </div>
+    </div>
+
+    <!-- Actions -->
+    <div class="actions">
+      <button id="btn-check" class="btn btn-sec">
+        <svg viewBox="0 0 16 16" fill="none" width="13" height="13">
+          <path d="M2.5 2.5v4h4M13.5 8A5.5 5.5 0 112.93 5.07" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Check now
+      </button>
+    </div>
+
+    <button id="btn-signout" class="btn btn-ghost">Sign out</button>
+
+  </section>
+
+</div>
+
+<script src="popup.js"></script>
+</body>
+</html>

@@ -1,0 +1,220 @@
+/* overlay.css — CodeGrab injected styles
+   All rules are scoped to #cg-overlay or #cg-toast to avoid polluting pages. */
+
+/* ── Overlay wrapper ─────────────────────────────────────────────────────── */
+#cg-overlay {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, 'Helvetica Neue', sans-serif !important;
+  font-size: 14px !important;
+  line-height: 1.4 !important;
+  opacity: 0 !important;
+  transform: translateY(-10px) scale(0.96) !important;
+  transition: opacity 0.22s ease, transform 0.22s ease !important;
+  pointer-events: none !important;
+}
+
+#cg-overlay.cg-in {
+  opacity: 1 !important;
+  transform: translateY(0) scale(1) !important;
+  pointer-events: all !important;
+}
+
+#cg-overlay.cg-out {
+  opacity: 0 !important;
+  transform: translateY(-8px) scale(0.97) !important;
+  pointer-events: none !important;
+}
+
+/* ── Card ─────────────────────────────────────────────────────────────────── */
+#cg-overlay .cg-card {
+  background: #13131f !important;
+  border: 1px solid rgba(255,255,255,0.1) !important;
+  border-radius: 16px !important;
+  width: 284px !important;
+  padding: 12px 14px 10px !important;
+  box-shadow:
+    0 0 0 0.5px rgba(0,0,0,0.6),
+    0 8px 30px rgba(0,0,0,0.55),
+    0 2px 8px rgba(0,0,0,0.3) !important;
+  box-sizing: border-box !important;
+  overflow: hidden !important;
+}
+
+/* ── Header row ──────────────────────────────────────────────────────────── */
+#cg-overlay .cg-top {
+  display: flex !important;
+  align-items: center !important;
+  gap: 9px !important;
+  margin-bottom: 10px !important;
+}
+
+#cg-overlay .cg-icon-wrap {
+  width: 30px !important;
+  height: 30px !important;
+  flex-shrink: 0 !important;
+  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%) !important;
+  border-radius: 9px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 6px !important;
+  color: #fff !important;
+  box-sizing: border-box !important;
+}
+
+#cg-overlay .cg-icon-wrap svg {
+  width: 100% !important;
+  height: 100% !important;
+  display: block !important;
+}
+
+#cg-overlay .cg-meta {
+  flex: 1 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 1px !important;
+  min-width: 0 !important;
+}
+
+#cg-overlay .cg-eyebrow {
+  display: block !important;
+  font-size: 10px !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.07em !important;
+  color: rgba(255,255,255,0.42) !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+#cg-overlay .cg-from {
+  display: block !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  color: #fff !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+#cg-overlay .cg-x {
+  all: unset !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 22px !important;
+  height: 22px !important;
+  border-radius: 6px !important;
+  font-size: 14px !important;
+  color: rgba(255,255,255,0.38) !important;
+  cursor: pointer !important;
+  flex-shrink: 0 !important;
+  transition: color 0.15s, background 0.15s !important;
+  line-height: 1 !important;
+}
+
+#cg-overlay .cg-x:hover {
+  color: rgba(255,255,255,0.85) !important;
+  background: rgba(255,255,255,0.1) !important;
+}
+
+/* ── Code row ────────────────────────────────────────────────────────────── */
+#cg-overlay .cg-body {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 8px !important;
+}
+
+#cg-overlay .cg-code-row {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  background: rgba(255,255,255,0.055) !important;
+  border: 1px solid rgba(255,255,255,0.09) !important;
+  border-radius: 11px !important;
+  padding: 8px 10px !important;
+}
+
+#cg-overlay .cg-code {
+  font-family: 'SF Mono', ui-monospace, 'Fira Code', Consolas, 'Courier New', monospace !important;
+  font-size: 24px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.18em !important;
+  color: #ffffff !important;
+  flex: 1 !important;
+  cursor: pointer !important;
+  display: block !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  user-select: all !important;
+}
+
+#cg-overlay .cg-fill {
+  all: unset !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 5px !important;
+  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%) !important;
+  color: #fff !important;
+  border-radius: 8px !important;
+  padding: 6px 11px !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  font-family: inherit !important;
+  cursor: pointer !important;
+  white-space: nowrap !important;
+  flex-shrink: 0 !important;
+  transition: opacity 0.15s, transform 0.12s !important;
+}
+
+#cg-overlay .cg-fill:hover  { opacity: 0.88 !important; }
+#cg-overlay .cg-fill:active { transform: scale(0.96) !important; }
+
+/* ── Progress bar (30-second countdown) ──────────────────────────────────── */
+#cg-overlay .cg-bar {
+  height: 2px !important;
+  background: rgba(255,255,255,0.08) !important;
+  border-radius: 2px !important;
+  overflow: hidden !important;
+}
+
+#cg-overlay .cg-bar-fill {
+  height: 100% !important;
+  width: 100% !important;
+  background: linear-gradient(90deg, #4f46e5, #7c3aed) !important;
+  border-radius: 2px !important;
+  animation: cg-countdown 30s linear forwards !important;
+  transform-origin: left !important;
+}
+
+@keyframes cg-countdown {
+  from { width: 100%; }
+  to   { width: 0%;   }
+}
+
+/* ── Toast ───────────────────────────────────────────────────────────────── */
+#cg-toast {
+  position: fixed !important;
+  bottom: 22px !important;
+  right: 22px !important;
+  z-index: 2147483647 !important;
+  background: #13131f !important;
+  color: #e5e7eb !important;
+  border: 1px solid rgba(255,255,255,0.1) !important;
+  border-radius: 10px !important;
+  padding: 9px 15px !important;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.4) !important;
+  pointer-events: none !important;
+  opacity: 0 !important;
+  transform: translateY(6px) !important;
+  transition: opacity 0.22s ease, transform 0.22s ease !important;
+}
+
+#cg-toast.cg-toast-in {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}

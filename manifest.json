@@ -1,0 +1,50 @@
+{
+  "manifest_version": 3,
+  "name": "CodeGrab",
+  "version": "1.0.0",
+  "description": "Detects 2FA/OTP codes in Gmail and autofills them — like iOS AutoFill for the browser.",
+  "permissions": [
+    "identity",
+    "storage",
+    "alarms",
+    "tabs",
+    "clipboardWrite"
+  ],
+  "host_permissions": [
+    "https://gmail.googleapis.com/*",
+    "https://www.googleapis.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "css": ["overlay.css"],
+      "run_at": "document_end",
+      "all_frames": false
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    },
+    "default_title": "CodeGrab"
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "oauth2": {
+    "client_id": "910598452436-trh72hbbbe3pjruq5h1qj0n5hr8g3nqs.apps.googleusercontent.com",
+    "scopes": [
+      "https://www.googleapis.com/auth/gmail.readonly"
+    ]
+  }
+}
