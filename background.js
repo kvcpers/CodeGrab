@@ -10,8 +10,8 @@ const POLL_MINUTES = 0.5; // every 30 seconds
 const PATTERNS = [
   // "verification code: 123456" / "security code — 8392" / "auth code: AB3F92"
   /(?:verification|security|authentication|auth|login|access|confirmation|one[\s\-]time|otp|2fa|two[\s\-]factor)\s+(?:code|pin|password|passcode)\s*[:\-–—]\s*([A-Z0-9]{4,8})/gi,
-  // "your code is 123456" / "your OTP is 482910" / "your reset code is 123456"
-  /your\s+(?:reset\s+)?(?:code|otp|pin|password)\s+(?:is|:)\s*([A-Z0-9]{4,8})/gi,
+  // "your code is 123456" / "your OTP is 482910"
+  /your\s+(?:code|otp|pin|password)\s+(?:is|:)\s*([A-Z0-9]{4,8})/gi,
   // "enter this code: AB3F92" / "use code 123456"
   /(?:enter|use)\s+(?:this\s+)?(?:code|otp|pin)\s*[:\-–—]?\s*([A-Z0-9]{4,8})/gi,
   // "OTP: 482910" standalone label
@@ -26,7 +26,7 @@ const SUBJECT_KEYWORDS = [
   'security code', 'auth code', 'login code', 'access code',
   'confirmation code', '2fa', 'two-factor', 'two factor',
   'sign-in code', 'signin code', 'sign in code', 'passcode',
-  'your code is', 'reset code', 'reset password', 'temporary password',
+  'your code is', 'reset code', 'temporary password',
 ];
 
 // ---------------------------------------------------------------------------
@@ -232,11 +232,9 @@ function extractCode(text) {
   return null;
 }
 
-function looksLikeCodeEmail(subject, body) {
+function looksLikeCodeEmail(subject, _body) {
   const s = subject.toLowerCase();
-  if (SUBJECT_KEYWORDS.some(kw => s.includes(kw))) return true;
-  const b = (body || '').toLowerCase();
-  return SUBJECT_KEYWORDS.some(kw => b.includes(kw));
+  return SUBJECT_KEYWORDS.some(kw => s.includes(kw));
 }
 
 function parseSenderName(from) {
