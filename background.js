@@ -18,19 +18,15 @@ const PATTERNS = [
   /\botp\s*[:\-–—]\s*([0-9]{4,8})\b/gi,
   // generic "code: XXXXX"
   /\bcode\s*[:\-–—]\s*([A-Z0-9]{4,8})\b/gi,
-  // bold/isolated 6-digit number (most common OTP format)
-  /\b([0-9]{6})\b/g,
-  // 4-digit PIN
-  /\b([0-9]{4})\b/g,
 ];
 
 // Subject-line keywords that identify security-code emails
 const SUBJECT_KEYWORDS = [
-  'verification', 'verify', 'otp', 'one-time', 'one time',
+  'verification code', 'verify your', 'otp', 'one-time', 'one time',
   'security code', 'auth code', 'login code', 'access code',
   'confirmation code', '2fa', 'two-factor', 'two factor',
   'sign-in code', 'signin code', 'sign in code', 'passcode',
-  'your code', 'reset code', 'temporary password',
+  'your code is', 'reset code', 'temporary password',
 ];
 
 // ---------------------------------------------------------------------------
@@ -236,9 +232,9 @@ function extractCode(text) {
   return null;
 }
 
-function looksLikeCodeEmail(subject, body) {
-  const t = (subject + ' ' + body).toLowerCase();
-  return SUBJECT_KEYWORDS.some(kw => t.includes(kw));
+function looksLikeCodeEmail(subject, _body) {
+  const s = subject.toLowerCase();
+  return SUBJECT_KEYWORDS.some(kw => s.includes(kw));
 }
 
 function parseSenderName(from) {
